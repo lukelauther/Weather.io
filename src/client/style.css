@@ -1,0 +1,19 @@
+#nav-container {
+   display: flex;
+   justify-content: space-evenly;
+   align-items: center;
+   border: 1px solid black;
+   padding: 20px 0px;
+   border-radius: 26px;
+}
+
+#nav-search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#nav-search-bar {
+    margin-left: 10px;
+    text-indent: 5px;
+}
