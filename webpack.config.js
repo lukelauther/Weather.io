@@ -1,26 +1,39 @@
 const path = require('path');
-const HTMLWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 
-    entry: './src/index.js', 
+    mode: process.env.NODE_ENV,
+
+    entry: './src/client/index.js', 
 
     output: {
-        path: path.join(__dirname, '/dist'),
+        path: path.join(__dirname, 'build'),
+        publicPath: '/',
         filename: 'bundle.js'
+    },
+
+    devServer: {
+        proxy: {
+            '/api': 'http://localhost:3000',
+            '/build': 'http://localhost:3000'
+        },
+        compress: true,
+        port: 8080,
+        historyApiFallback: true
     },
 
     plugins: [
         new HtmlWebpackPlugin({
-            template: './src/index.html'
+            template: './src/client/index.html',
+            filename: 'index.html'
         })
     ], 
 
     module: {
         rules: [
             {
-                test: /.js$/,
+                test: /\.jsx?/,
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
@@ -28,8 +41,12 @@ module.exports = {
                         presets: ['@babel/preset-env', '@babel/preset-react']
                     }
                 }
+            },
+            {
+                test: /\.css$/i,
+                exclude: /node_modules/,
+                use: ['style-loader', 'css-loader']
             }
         ]
     }
-
 }
