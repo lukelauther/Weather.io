@@ -8,11 +8,12 @@ const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema;
 
-const weatherSchema = new Schema({
+const locationSchema = new Schema({
     city: { type: String, required: true },
-    state: { type: String, required: true }
+    state: { type: String, required: true }, 
+    locationKey: {type: Number, required: true }
 })
 
-const weather = mongoose.model('Weather', weatherSchema);
+const location = mongoose.model('Location', locationSchema);
 
-module.exports = weather;
+module.exports = location;

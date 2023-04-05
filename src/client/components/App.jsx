@@ -11,6 +11,7 @@ export default function App() {
   return (
     <div>
         <Nav />
+        <div id='test-append'>hello</div>
     </div>
   )
 }

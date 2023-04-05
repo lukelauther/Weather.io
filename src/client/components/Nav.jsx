@@ -8,35 +8,33 @@ import React, { Component, useEffect } from 'react'
 
 export default function Nav() {
 
-  const [state, setState] = React.useState('')
+  const [location, setLocation] = React.useState('')
 
-  function handleSubmit(state) {
-    // event.preventDefault();
-    // console.log('Submitted! current state:', state)
-   useEffect(() => {
-      fetch('/api/', {
-        method: 'POST', 
-        body: JSON.stringify({ location: state }),
-        headers: {
-          'Content-Type': 'application/json',
-          // 'Accept': 'application/json'
-        },
-      })
-        .then(response => {
-          response.json()
-        })
-        .then(data => console.log(data))
-    }, [])
+  function handleSubmit() {
+  // event.preventDefault();
+  // console.log('current state:', location)
+  fetch('/api/', {
+    method: 'POST', 
+    body: JSON.stringify({ userLocation: location }),
+    headers: {
+      'Content-type': 'application/json',
+    },
+  })
+    .then(response => {
+      response.json()
+    })
+    // .then(data => console.log(data))
+    .catch(error => console.log(error))
   }
 
   function handleChange(e) {
-    setState(e.target.value)
+    setLocation(e.target.value)
   }
   
   return (
     <div>
         <div id='nav-container'>
-            <form onSubmit={handleSubmit(state)}>
+            <form onSubmit={handleSubmit}>
               <div id='nav-search'>
                 Add Location:
                 <input id='nav-search-bar' placeholder='city, state' onChange={handleChange}></input>

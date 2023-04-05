@@ -7,13 +7,13 @@ const PORT = 3000;
 const weatherController = require('./weatherController')
 
 const mongoose = require("mongoose");
-const weather = require('./model');
+const location = require('./model');
 const MONGO_URI =
   "mongodb+srv://lukelauther1:weather@weather.fc6usi4.mongodb.net/?retryWrites=true&w=majority";
 
 mongoose.connect(MONGO_URI);
 mongoose.connection.once("open", () => {
-  console.log("wow! you connected to the database");
+  console.log("hacking the database, one moment...");
 });
 
 app.use(express.json());
@@ -24,9 +24,9 @@ app.get('/', (req, res) => {
 })
 
 // API ROUTE???
-app.post('/api/', weatherController.getLocationKey, /*weatherController.getCurrentConditions,*/ (req, res) => {
-  // console.log('hello from the server');
-   return res.status(200).json(res.locals.test)
+app.post('/api/', weatherController.getLocationKey, weatherController.getCurrentConditions, (req, res) => {
+   console.log('temp', res.locals.currentTemp)
+   return res.status(200).json(res.locals.currentTemp)
 });
 
 // catch all for unknown routes
