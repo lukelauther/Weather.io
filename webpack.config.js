@@ -15,7 +15,7 @@ module.exports = {
 
     devServer: {
         proxy: {
-            '/api': 'http://localhost:3000',
+            '/api/': 'http://localhost:3000',
             '/build': 'http://localhost:3000'
         },
         compress: true,
@@ -48,5 +48,9 @@ module.exports = {
                 use: ['style-loader', 'css-loader']
             }
         ]
+    },
+    
+    resolve: {
+        extensions: ['.js', '.jsx']
     }
 }
