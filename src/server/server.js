@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
 app.post('/api/', weatherController.getLocationKey, weatherController.getCurrentConditions, (req, res) => {
   // console.log(`The current temperatire is ${res.locals.currentTemp}°F`)
   console.log('post request complete')
-  console.log('locals ', res.locals)
+  // console.log('locals ', res.locals)
   return res.status(200).json({
     locationCity: res.locals.location.city,
     locationState: res.locals.location.state,

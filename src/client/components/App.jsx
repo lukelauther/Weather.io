@@ -30,7 +30,7 @@ export default function App() {
     })
     .then(response => response.json())
     .then(data => {
-      console.log('data ', data)
+      // console.log('data ', data)
       // const body = document.getElementById('test-append')
       // body.append(data.temp)
       setLocationInfo((prevLocationInfo) => {
@@ -45,10 +45,9 @@ export default function App() {
   }
 
   return (
-    <div>
-        <Nav handleSubmit={handleSubmit} handleChange={handleChange}/>
+    <div id='main-container'>
+        <Nav handleSubmit={handleSubmit} handleChange={handleChange} />
         <Card locationInfo={locationInfo} /> 
-        <div id='test-append'></div>
     </div>
   )
 }

@@ -13,7 +13,7 @@ export default function Nav({ handleSubmit, handleChange}) {
             <form onSubmit={handleSubmit}>
               <div id='nav-search'>
                 Add Location:
-                <input id='nav-search-bar' placeholder='city, state' onChange={handleChange}></input>
+                <input id='nav-search-bar' placeholder='city' onChange={handleChange}></input>
               </div>
             </form>
             <div id='nav-logo'>Logo</div>
