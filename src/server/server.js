@@ -25,8 +25,16 @@ app.get('/', (req, res) => {
 
 // API ROUTE???
 app.post('/api/', weatherController.getLocationKey, weatherController.getCurrentConditions, (req, res) => {
-   console.log('temp', res.locals.currentTemp)
-   return res.status(200).json(res.locals.currentTemp)
+  // console.log(`The current temperatire is ${res.locals.currentTemp}°F`)
+  console.log('post request complete')
+  console.log('locals ', res.locals)
+  return res.status(200).json({
+    locationCity: res.locals.location.city,
+    locationState: res.locals.location.state,
+    temp: res.locals.currentTemp,
+    highTemp: res.locals.highTemp,
+    lowTemp: res.locals.lowTemp
+  })
 });
 
 // catch all for unknown routes

@@ -6,31 +6,7 @@ import React, { Component, useEffect } from 'react'
 // handle submit is where we will do the fetch request
 
 
-export default function Nav() {
-
-  const [location, setLocation] = React.useState('')
-
-  function handleSubmit() {
-  // event.preventDefault();
-  // console.log('current state:', location)
-  fetch('/api/', {
-    method: 'POST', 
-    body: JSON.stringify({ userLocation: location }),
-    headers: {
-      'Content-type': 'application/json',
-    },
-  })
-    .then(response => {
-      response.json()
-    })
-    // .then(data => console.log(data))
-    .catch(error => console.log(error))
-  }
-
-  function handleChange(e) {
-    setLocation(e.target.value)
-  }
-  
+export default function Nav({ handleSubmit, handleChange}) {  
   return (
     <div>
         <div id='nav-container'>

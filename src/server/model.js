@@ -8,11 +8,18 @@ const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema;
 
+// const locationSchema = new Schema({
+//     city: { type: String, required: true },
+//     state: { type: String, required: true }, 
+//     locationKey: {type: Number, required: true }
+// })
+
 const locationSchema = new Schema({
     city: { type: String, required: true },
-    state: { type: String, required: true }, 
-    locationKey: {type: Number, required: true }
-})
+    state: { type: String, required: true },
+    lat: { type: Number, required: true},
+    lon: { type: Number, required: true}
+});
 
 const location = mongoose.model('Location', locationSchema);
 
