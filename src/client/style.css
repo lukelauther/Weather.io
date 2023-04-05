@@ -5,9 +5,14 @@ body {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    background-color: #212529;
+    /* background-color: #212529; */
     color: rgb(225, 225, 225);
     font-family: 'Poppins', sans-serif;
+    
+}
+
+html {
+    background-image: url(./images/scenicbg70%.png);
 }
 
 #main-container {
@@ -35,17 +40,15 @@ body {
     font-weight: 400;
 }
 
-#nav-logo {
-    height: 10px;
-    width: 10px;
-}
-
 #nav-search-bar {
     margin-left: 10px;
-    text-indent: 5px;
+    text-indent: 10px;
     border: 1px solid #212529;
     border-radius: 8px;
     background-color: #1e2022;
+    outline: none;
+    color: rgb(225, 225, 225);
+    padding: 3px 0px;
 }
 
 #location-info {
@@ -61,14 +64,29 @@ body {
     box-shadow: 5px 5px 5px 1px rgba(10, 9, 9, 0.2);
 }
 
+#card-top {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 #card-location {
     font-size: 34px;
     font-weight: 500;
 }
 
+#card-description {
+    font-size: 30px;
+    font-weight: 500;
+    margin: 10px 0px;
+}
+
 #card-temp,
 #card-high,
-#card-low {
+#card-low, 
+#card-feels-like,
+#card-wind-speed {
     font-size: 18px;
     font-weight: 400;
 }

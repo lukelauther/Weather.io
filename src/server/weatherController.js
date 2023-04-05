@@ -59,9 +59,12 @@ weatherController.getCurrentConditions = (req, res, next) => {
         .then(data => {
             // console.log('locals', res.locals.location)
             // console.log('data', data)
+            res.locals.description = data.weather[0].description
+            res.locals.feelsLike = data.main.feels_like
             res.locals.currentTemp = data.main.temp;
             res.locals.highTemp = data.main.temp_max;
             res.locals.lowTemp = data.main.temp_min;
+            res.locals.windSpeed = data.wind.speed
             return next()
         })
         .catch(error => console.log('Error in getCurrentConditions', error))

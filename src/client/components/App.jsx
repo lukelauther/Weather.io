@@ -14,8 +14,10 @@ export default function App() {
     city: '',
     state: '',
     temp: 0,
+    feelsLike: 0,
     highTemp: 0,
-    lowTemp: 0
+    lowTemp: 0,
+    windSpeed: 0
   })
 
   // add prevent default?
@@ -34,7 +36,17 @@ export default function App() {
       // const body = document.getElementById('test-append')
       // body.append(data.temp)
       setLocationInfo((prevLocationInfo) => {
-        return { ...prevLocationInfo, city: data.locationCity, state: data.locationState, temp: data.temp, highTemp: data.highTemp, lowTemp: data.lowTemp }
+        return {
+           ...prevLocationInfo, 
+           city: data.locationCity, 
+           state: data.locationState, 
+           temp: data.temp, 
+           highTemp: data.highTemp, 
+           lowTemp: data.lowTemp, 
+           description: data.description,
+           feelsLike: data.feelsLike,
+           windSpeed: data.windSpeed
+        }
       })
     })
     .catch(error => console.log('Error on the front end', error))

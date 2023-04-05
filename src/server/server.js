@@ -33,8 +33,11 @@ app.post('/api/', weatherController.getLocationKey, weatherController.getCurrent
     locationState: res.locals.location.state,
     temp: res.locals.currentTemp,
     highTemp: res.locals.highTemp,
-    lowTemp: res.locals.lowTemp
-  })
+    lowTemp: res.locals.lowTemp,
+    description: res.locals.description,
+    feelsLike: res.locals.feelsLike,
+    windSpeed: res.locals.windSpeed
+  });
 });
 
 // catch all for unknown routes
