@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Nav from './Nav'
 import Card from './Card'
 import CardCreator from './CardCreator'
@@ -52,14 +52,19 @@ export default function App() {
     .catch(error => console.log('Error on the front end', error))
   }
 
+  
   function handleChange(e) {
     setLocation(e.target.value)
   }
-
+  
   function handleDelete(tag) {
-    // console.log(locationInfo)
+    console.log('before delete ', locationInfo)
+    fetch(`/api/${locationInfo[tag].city}`, {
+      method: 'DELETE'
+    })
     const card = document.getElementById(tag)
     card.remove()
+    console.log('after delete ', locationInfo)
   }
 
   return (

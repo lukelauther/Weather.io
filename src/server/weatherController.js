@@ -76,4 +76,13 @@ weatherController.getCurrentConditions = (req, res, next) => {
         .catch(error => console.log('Error in getCurrentConditions', error))
 }
 
+weatherController.deleteLocation = (req, res, next) => {
+    db.findOneAndDelete({ city: req.params.id })
+        .then(response => {
+            // console.log('deleted document ', response)
+            return next();
+        })
+        .catch(error => console.log('Error in deleteLocation', error))
+}
+
 module.exports = weatherController

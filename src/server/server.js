@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
    return res.status(200).sendFile(path.resolve(__dirname, '../client/index.html'))
 })
 
-// API ROUTE???
+// POST NEW LOCATIONS TO THE DATABASE
 app.post('/api/', weatherController.getLocationKey, weatherController.getCurrentConditions, (req, res) => {
   // console.log('post request complete')
   return res.status(200).json({
@@ -37,6 +37,11 @@ app.post('/api/', weatherController.getLocationKey, weatherController.getCurrent
     windSpeed: res.locals.windSpeed
   });
 });
+
+// DELETE DOCUMENT FROM THE DATABASE
+app.delete('/api/:id', weatherController.deleteLocation, (req, res) => {
+  return res.sendStatus(200)
+})
 
 // catch all for unknown routes
 app.use((req, res) => res.sendStatus(404));
