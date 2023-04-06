@@ -28,7 +28,7 @@ html {
    background-color: #2c3034;
    padding: 20px 0px;
    border-radius: 26px;
-   box-shadow: 5px 5px 5px 1px rgba(10, 9, 9, 0.2);
+   box-shadow: 6px 6px 8px 1px /*rgba(2, 2, 2, 0.2)*/ rgb(33, 32, 32);
    margin: 10px 10px;
 }
 
@@ -62,13 +62,13 @@ html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 30%;
+    width: 22%;
     border: 1px solid #212529;
     border-radius: 26px;
-    margin: 5px 10px;
+    margin: 8px 10px;
     padding: 10px 10px;
     background-color: #2c3034;
-    box-shadow: 5px 5px 5px 1px rgba(2, 2, 2, 0.2);
+    box-shadow: 6px 6px 8px 1px /*rgba(2, 2, 2, 0.2)*/ rgb(33, 32, 32);
     line-height: 0.8em;
 }
 
