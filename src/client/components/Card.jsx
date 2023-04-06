@@ -2,8 +2,16 @@
 import React from 'react'
 
 export default function Card(props) {
+
+  const closeLogo = (
+    <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 96 960 960" width="20">
+      <path d="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"/>
+    </svg>
+  )
+
   return (
-    <div id='location-info'>
+    <div className='location-info' id={props.tag}>
+        <button id='card-delete' onClick={() => props.handleDelete(props.tag)}>{closeLogo}</button>
         <h2 id='card-location'>{props.locationInfo.city} {props.locationInfo.state}</h2>
         <h3 id='card-description'>{props.locationInfo.description}</h3>
         <h4 id='card-temp'>Current Temperature: {Math.round(props.locationInfo.temp)} °F</h4>

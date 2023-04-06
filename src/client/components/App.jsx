@@ -23,7 +23,6 @@ export default function App() {
 
   const [locationInfo, setLocationInfo] = React.useState([])
 
-
   // add prevent default?
   function handleSubmit(e) {
     e.preventDefault();
@@ -36,9 +35,6 @@ export default function App() {
     })
     .then(response => response.json())
     .then(data => {
-      // console.log('data ', data)
-      // const body = document.getElementById('test-append')
-      // body.append(data.temp)
       setLocationInfo((prevLocationInfo) => {
         return [
            ...prevLocationInfo, 
@@ -60,11 +56,16 @@ export default function App() {
     setLocation(e.target.value)
   }
 
+  function handleDelete(tag) {
+    // console.log(locationInfo)
+    const card = document.getElementById(tag)
+    card.remove()
+  }
+
   return (
     <div id='main-container'>
         <Nav handleSubmit={handleSubmit} handleChange={handleChange} />
-        <CardCreator locationInfo={locationInfo}/>
-        {/* <Card locationInfo={locationInfo} />  */}
+        <CardCreator handleDelete={handleDelete} locationInfo={locationInfo}/>
     </div>
   )
 }

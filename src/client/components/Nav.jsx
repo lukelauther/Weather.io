@@ -17,7 +17,7 @@ export default function Nav({ handleSubmit, handleChange}) {
   return (
     <div>
         <div id='nav-container'>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} autoComplete='off'>
               <div id='nav-search'>
                 Add Location:
                 <input id='nav-search-bar' placeholder='city' onChange={handleChange}></input>

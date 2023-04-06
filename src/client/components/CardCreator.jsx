@@ -7,7 +7,7 @@ export default function CardCreator(props) {
   const locations = []
 
   for (let i = 0; i < props.locationInfo.length; i++) {
-    locations.push(<Card key={i} locationInfo={props.locationInfo[i]}/>)
+    locations.push(<Card key={i} tag={i} locationInfo={props.locationInfo[i]} handleDelete={props.handleDelete}/>)
   }
 
   return (
