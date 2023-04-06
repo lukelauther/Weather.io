@@ -17,15 +17,23 @@ weatherController.getLocationKey = (req, res, next) => {
     fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${req.body.userLocation}&appid=01b7db4cad30c396038a495ce4a70214`)
       .then((info) => info.json())
       .then(data => {
-        db.create({
-            city: data[0].name,
-            state: data[0].state,
-            lat: data[0].lat,
-            lon: data[0].lon
-        })
-            .then((result) => {
-                res.locals.location = result;
-                return next()
+        db.findOne({ city: data[0].name })
+            .then(result => {
+                if (result) {
+                    // console.log('result ', result)
+                    res.locals.location = result;
+                    return next();
+                } else {
+                    db.create({
+                      city: data[0].name,
+                      state: data[0].state,
+                      lat: data[0].lat,
+                      lon: data[0].lon,
+                    }).then((result) => {
+                      res.locals.location = result;
+                      return next();
+                    });
+                }
             })
       })
       .catch((error) => console.log('Error in getLocationKey', error));
@@ -57,8 +65,6 @@ weatherController.getCurrentConditions = (req, res, next) => {
     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${res.locals.location.lat}&lon=${res.locals.location.lon}&appid=01b7db4cad30c396038a495ce4a70214&units=Imperial`)
         .then(info => info.json())
         .then(data => {
-            // console.log('locals', res.locals.location)
-            // console.log('data', data)
             res.locals.description = data.weather[0].description
             res.locals.feelsLike = data.main.feels_like
             res.locals.currentTemp = data.main.temp;

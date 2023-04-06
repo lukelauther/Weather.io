@@ -1,6 +1,7 @@
 import React from 'react'
 import Nav from './Nav'
 import Card from './Card'
+import CardCreator from './CardCreator'
 
 import '../style.css'
 
@@ -10,15 +11,18 @@ export default function App() {
   // useEffect will be where the fetch request is made 
 
   const [location, setLocation] = React.useState('')
-  const [locationInfo, setLocationInfo] = React.useState({
-    city: '',
-    state: '',
-    temp: 0,
-    feelsLike: 0,
-    highTemp: 0,
-    lowTemp: 0,
-    windSpeed: 0
-  })
+  // const [locationInfo, setLocationInfo] = React.useState({
+  //   city: '',
+  //   state: '',
+  //   temp: 0,
+  //   feelsLike: 0,
+  //   highTemp: 0,
+  //   lowTemp: 0,
+  //   windSpeed: 0
+  // })
+
+  const [locationInfo, setLocationInfo] = React.useState([])
+
 
   // add prevent default?
   function handleSubmit(e) {
@@ -36,17 +40,17 @@ export default function App() {
       // const body = document.getElementById('test-append')
       // body.append(data.temp)
       setLocationInfo((prevLocationInfo) => {
-        return {
+        return [
            ...prevLocationInfo, 
-           city: data.locationCity, 
+           {city: data.locationCity, 
            state: data.locationState, 
            temp: data.temp, 
            highTemp: data.highTemp, 
            lowTemp: data.lowTemp, 
            description: data.description,
            feelsLike: data.feelsLike,
-           windSpeed: data.windSpeed
-        }
+           windSpeed: data.windSpeed}
+        ]
       })
     })
     .catch(error => console.log('Error on the front end', error))
@@ -59,7 +63,8 @@ export default function App() {
   return (
     <div id='main-container'>
         <Nav handleSubmit={handleSubmit} handleChange={handleChange} />
-        <Card locationInfo={locationInfo} /> 
+        <CardCreator locationInfo={locationInfo}/>
+        {/* <Card locationInfo={locationInfo} />  */}
     </div>
   )
 }
