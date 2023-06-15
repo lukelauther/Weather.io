@@ -4,8 +4,10 @@ const path = require('path');
 const PORT = 3000;
 
 // IMPORT WEATHER CONTROLLER
-const weatherController = require('./weatherController')
+const weatherController = require('./controllers/weatherController')
+// const weatherRouter = require('./routes/weatherRouter')
 
+// Database connection
 const mongoose = require("mongoose");
 const location = require('./model');
 const MONGO_URI =
@@ -15,6 +17,7 @@ mongoose.connect(MONGO_URI);
 mongoose.connection.once("open", () => {
   console.log("hacking the database, one moment...");
 });
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
@@ -34,14 +37,16 @@ app.post('/api/', weatherController.getLocationKey, weatherController.getCurrent
     lowTemp: res.locals.lowTemp,
     description: res.locals.description,
     feelsLike: res.locals.feelsLike,
-    windSpeed: res.locals.windSpeed
+    windSpeed: res.locals.windSpeed,
+    sunrise: res.locals.sunrise,
+    sunset: res.locals.sunset,
   });
 });
 
 // DELETE DOCUMENT FROM THE DATABASE
-app.delete('/api/:id', weatherController.deleteLocation, (req, res) => {
-  return res.sendStatus(200)
-})
+// app.delete('/api/:id', weatherController.deleteLocation, (req, res) => {
+//   return res.sendStatus(200)
+// })
 
 // catch all for unknown routes
 app.use((req, res) => res.sendStatus(404));
